@@ -4,40 +4,40 @@ from PyQt6.QtGui import QPainter, QColor
 from PyQt6.QtWidgets import QApplication, QWidget
 
 
-class Rotating_PointWidget(QWidget):
+class CircularAnimationWidget(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Circ")
-        self.setGeometry(0, 0, 600, 600)
-        self.radius = 200
-        self.angle = -90
+        self.setWindowTitle("Circle Animation")
+        self.setGeometry(100, 100, 600, 600)
+        self.circle_radius = 200
+        self.current_angle = -90
 
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_position)
-        self.timer.start(5)
+        self.animation_timer = QTimer(self)
+        self.animation_timer.timeout.connect(self.refresh_position)
+        self.animation_timer.start(5)
 
-    def update_position(self):
-        self.angle -= 0.2
-        if self.angle >= 360:
-            self.angle = 0
+    def refresh_position(self):
+        self.current_angle -= 0.2
+        if self.current_angle <= -360:
+            self.current_angle += 360
         self.update()
 
     def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        canvas = QPainter(self)
+        canvas.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         center_x = self.width() // 2
         center_y = self.height() // 2
-        painter.setPen(QColor(228, 0, 100))
-        painter.drawEllipse(center_x - self.radius, center_y - self.radius, self.radius * 2, self.radius * 2)
+        canvas.setPen(QColor(228, 0, 100))
+        canvas.drawEllipse(center_x - self.circle_radius, center_y - self.circle_radius, self.circle_radius * 2, self.circle_radius * 2)
 
-        point_x = center_x + self.radius * math.cos(math.radians(self.angle))
-        point_y = center_y + self.radius * math.sin(math.radians(self.angle))
-        painter.drawEllipse(int(point_x) - 5, int(point_y) - 5, 10, 10)
+        pos_x = center_x + self.circle_radius * math.cos(math.radians(self.current_angle))
+        pos_y = center_y + self.circle_radius * math.sin(math.radians(self.current_angle))
+        canvas.drawEllipse(int(pos_x) - 5, int(pos_y) - 5, 10, 10)
 
 
 app = QApplication([])
-window = Rotating_PointWidget()
-window.show()
+widget = CircularAnimationWidget()
+widget.show()
 app.exec()
