@@ -1,10 +1,8 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends, Query
-from app.services.auth import get_current_user
-from app.websocket.connection_manager import manager
-from app.websocket.pubsub import subscribe_to_user_channel
-from app.models.user import User
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
+from sem2.app.websocket.connection_manager import manager
+from sem2.app.websocket.pubsub import subscribe_to_user_channel
 from jose import JWTError, jwt
-from app.core.config import settings
+from sem2.app.core.config import settings
 
 router = APIRouter()
 

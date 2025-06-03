@@ -5,16 +5,14 @@ import uuid
 from io import BytesIO
 
 from PIL import Image
-from fastapi import FastAPI, UploadFile, File, Form
-from starlette.responses import HTMLResponse, FileResponse
+from fastapi import FastAPI, Form
+from starlette.responses import HTMLResponse
 from starlette.staticfiles import StaticFiles
 
-from app.websocket import pubsub
+from sem2.app.websocket import pubsub
 
-from app.celery import celery_app
-
-from app.db.init_db import init_db
-from app.api import auth, image, ws
+from sem2.app.db.init_db import init_db
+from sem2.app.api import image, ws, auth
 
 import uvicorn
 
@@ -27,7 +25,7 @@ init_db()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Убедись, что папка 'static' существует
-os.makedirs("static", exist_ok=True)
+os.makedirs("../static", exist_ok=True)
 
 
 @app.on_event("startup")
@@ -55,7 +53,7 @@ async def show_image(base64_text: str = Form(...)):
         image = Image.open(BytesIO(image_data))
 
         filename = f"{uuid.uuid4()}.png"
-        filepath = os.path.join("static", filename)
+        filepath = os.path.join("../static", filename)
         image.save(filepath)
 
         return f"""

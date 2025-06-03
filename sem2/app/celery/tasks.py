@@ -1,8 +1,7 @@
-import sys
 import time
-from app.celery import celery_app
-from app.services.binarization import decode_base64_image, encode_base64_image, binarize_image
-from app.websocket.pubsub import publish_message
+from sem2.app.celery import celery_app
+from sem2.app.services.binarization import decode_base64_image, encode_base64_image, binarize_image
+from sem2.app.websocket.pubsub import publish_message
 
 @celery_app.task(name="app.celery.tasks.binarize_image_task")
 def binarize_image_task(task_id: str, user_id: str, image_base64: str, algorithm: str):

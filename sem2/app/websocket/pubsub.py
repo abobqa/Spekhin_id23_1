@@ -2,7 +2,7 @@ import json
 import threading
 import asyncio
 from redislite import Redis
-from app.websocket.connection_manager import manager
+from sem2.app.websocket.connection_manager import manager
 
 redis_path = "/tmp/redislite.db"
 redis = Redis(redis_path)

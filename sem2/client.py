@@ -53,7 +53,7 @@ async def listen_ws_and_process(queue, task_id):
         elif data["status"] == "COMPLETED":
             print("[COMPLETED] Сохраняем изображение...")
             image_bytes = base64.b64decode(data["binarized_image"])
-            with open("result.png", "wb") as f:
+            with open("../result.png", "wb") as f:
                 f.write(image_bytes)
             print("Готово: result.png")
             break

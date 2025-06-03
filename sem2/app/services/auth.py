@@ -2,11 +2,11 @@ from fastapi import Depends, HTTPException, status
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
-from fastapi.security import OAuth2PasswordBearer, HTTPBearer, HTTPAuthorizationCredentials
-from app.core.config import settings
-from app.db.session import SessionLocal
-from app.cruds import user as user_crud
-from app.models.user import User
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from sem2.app.core.config import settings
+from sem2.app.db.session import SessionLocal
+from sem2.app.cruds import user as user_crud
+from sem2.app.models.user import User
 
 oauth2_scheme = HTTPBearer()
 

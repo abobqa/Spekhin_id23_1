@@ -1,12 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.user import UserCreate, UserLogin, UserWithToken
-from app.db.session import SessionLocal
-from app.cruds import user as user_crud
-from app.services.auth import create_access_token
-from app.services.auth import get_current_user
-from app.models.user import User
-from app.schemas.user import UserOut
+from sem2.app.schemas.user import UserCreate, UserLogin, UserWithToken
+from sem2.app.db.session import SessionLocal
+from sem2.app.cruds import user as user_crud
+from sem2.app.services.auth import create_access_token
+from sem2.app.services.auth import get_current_user
+from sem2.app.models.user import User
+from sem2.app.schemas.user import UserOut
 
 router = APIRouter()
 

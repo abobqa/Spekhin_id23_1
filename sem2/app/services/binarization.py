@@ -1,10 +1,9 @@
-import cv2
 import numpy as np
 import base64
 from typing import Literal
-from app.services.otsu import otsu_threshold
-from app.services.niblack import niblack_threshold
-from app.services.sauvola import sauvola_threshold
+from sem2.app.services.otsu import otsu_threshold
+from sem2.app.services.niblack import niblack_threshold
+from sem2.app.services.sauvola import sauvola_threshold
 from io import BytesIO
 from PIL import Image
 

@@ -1,9 +1,9 @@
 import uuid
 from fastapi import APIRouter, HTTPException, Depends
-from app.schemas.image import BinaryImageRequest
-from app.celery.tasks import binarize_image_task
-from app.services.auth import get_current_user
-from app.models.user import User
+from sem2.app.schemas.image import BinaryImageRequest
+from sem2.app.celery.tasks import binarize_image_task
+from sem2.app.services.auth import get_current_user
+from sem2.app.models.user import User
 
 router = APIRouter()
 
